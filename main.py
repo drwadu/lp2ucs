@@ -162,22 +162,34 @@ if __name__ == "__main__":
 
     for (i,a) in program._nameMap.items():
         print(f"c {i} {a}")
-    opt = sys.argv[2]
-    if opt == "-sc": 
-        # external_supports = dict()
-        for cycle in simple_cycles:
-            for node in cycle: 
-                print(node, end=" ")
-            for edge in cycle_free_components:
-                if set(edge).intersection(cycle):
-                    for lit in set(edge).difference(cycle):
-                        # external_supports.append(-lit)
-                        print(-lit, end=" ")
-            print()
-    elif opt == "-ac":
-        pass
-    else:
-        print(f"unknown option: {opt}")
+    for cycle in simple_cycles:
+        for node in cycle: 
+            print(node, end=" ")
+        for edge in cycle_free_components:
+            if set(edge).intersection(cycle):
+                for lit in set(edge).difference(cycle):
+                    # external_supports.append(-lit)
+                    print(-lit, end=" ")
+        print()
+
+    ###for (i,a) in program._nameMap.items():
+    ###    print(f"c {i} {a}")
+    ###opt = sys.argv[2]
+    ###if opt == "-sc": 
+    ###    # external_supports = dict()
+    ###    for cycle in simple_cycles:
+    ###        for node in cycle: 
+    ###            print(node, end=" ")
+    ###        for edge in cycle_free_components:
+    ###            if set(edge).intersection(cycle):
+    ###                for lit in set(edge).difference(cycle):
+    ###                    # external_supports.append(-lit)
+    ###                    print(-lit, end=" ")
+    ###        print()
+    ###elif opt == "-ac":
+    ###    pass
+    ###else:
+    ###    print(f"unknown option: {opt}")
 
 
     #print(deps.nodes)
