@@ -7,14 +7,14 @@ if __name__ == "__main__":
         l[1]: int(l[0])
         for l in map(
             lambda l: l.rstrip("\n").split(" ")[1:],
-            filter(lambda l: l.startswith("c ") and not "projected_away" in l, ucs_file),
+            filter(lambda l: l.startswith("c "), ucs_file),
         )
     }
     ccg = {
         l[1]: int(l[0])
         for l in map(
             lambda l: l.rstrip("\n").split(" ")[1:],
-            filter(lambda l: l.startswith("c ") and not "projected_away" in l, open(sys.argv[2], "r").readlines()),
+            filter(lambda l: l.startswith("c "), open(sys.argv[2], "r").readlines()),
         )
     }
 
@@ -28,7 +28,13 @@ if __name__ == "__main__":
     for line in filter(lambda l: not l.startswith("c "), ucs_file[1:]):
         for a in map(int, line.strip(" \n").split(" ")):
             if a > 0:
-                print(maps[a], end=" ")
+                a_ = maps.get(a, None)
+                if a_: print(a, end=" ")
+                else: continue
+                #print(maps[a], end=" ")
             else:
-                print(f"-{maps[abs(a)]}", end=" ")
+                a_ = maps.get(-a, None)
+                if a_: print(-a, end=" ")
+                else: continue
+                #print(f"-{maps[abs(a)]}", end=" ")
         print()
