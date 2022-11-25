@@ -7,7 +7,7 @@ if __name__ == "__main__":
         l[1]: int(l[0])
         for l in map(
             lambda l: l.rstrip("\n").split(" ")[1:],
-            filter(lambda l: l.startswith("c "), ucs_file),
+            filter(lambda l: l.startswith("c ") and not "projected_away" in l, ucs_file),
         )
     }
     ccg = {
